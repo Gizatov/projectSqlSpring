@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>List Countries</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin: 0;
+      padding: 20px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #ddd;
+    }
+
+    tbody tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    button[type="submit"] {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<h1>List of Countries</h1>
+<p><a href="/countries/add">Create new</a></p>
+<p><a href="/cities">View all cities</a></p>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Capital</th>
+    <th>Population</th>
+    <th>Land Area</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="country : ${countries}">
+    <td th:text="${country.name}"></td>
+    <td th:text="${country.capital}"></td>
+    <td th:text="${country.population}"></td>
+    <td th:text="${country.landArea}"></td>
+  </tr>
+  </tbody>
+</table>
+<a href="/countries/add">Add Country</a>
+<button onclick="sortTable()">Sort by Land Area</button>
+<script>
+  function sortTable() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementsByTagName("table")[0];
+    switching = true;
+    while (switching) {
+      switching = false;
+      rows = table.rows;
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName("TD")[3];
+        y = rows[i + 1].getElementsByTagName("TD")[3];
+        if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  }
+</script>
+</body>
+</html>

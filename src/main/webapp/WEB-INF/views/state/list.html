@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>States</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin: 0;
+      padding: 20px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #ddd;
+    }
+
+    tbody tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    button[type="submit"] {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<h1>States</h1>
+<p><a href="/countries/add">Create new</a></p>
+<p><a href="/countries">View all countries</a></p>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Abbreviation</th>
+    <th>Country Id</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="state : ${states}">
+    <td th:text="${state.getName()}"></td>
+    <td th:text="${state.getAbbreviation()}"></td>
+    <td th:text="${state.getCountryId()}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

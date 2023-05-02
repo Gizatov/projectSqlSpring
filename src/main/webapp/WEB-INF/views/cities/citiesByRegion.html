@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Cities by Region</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin: 0;
+      padding: 20px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #ddd;
+    }
+
+    tbody tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    button[type="submit"] {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>City Name</th>
+    <th>Population</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>State Name</th>
+    <th>State Abbreviation</th>
+    <th>Country Name</th>
+    <th>Country Capital</th>
+    <th>Country Population</th>
+    <th>Country Land Area</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="city : ${cities}">
+    <td th:text="${city.getStateName()}"></td>
+    <td th:text="${city.population}"></td>
+    <td th:text="${city.latitude}"></td>
+    <td th:text="${city.longitude}"></td>
+    <td th:text="${city.stateName}"></td>
+    <td th:text="${city.stateAbbreviation}"></td>
+    <td th:text="${city.countryName}"></td>
+    <td th:text="${city.countryCapital}"></td>
+    <td th:text="${city.countryPopulation}"></td>
+    <td th:text="${city.countryLandArea}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
